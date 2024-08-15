@@ -1,7 +1,8 @@
 import time
 
 from src.API_HH import GetInfoHHCompany
-from src.create_and_word_with_DB import connect_to_db, create_tables, insert_employer, insert_vacancy
+from src.create_DB import connect_to_db, create_tables, insert_employer, insert_vacancy
+from src.user_interface import display_data
 
 
 def main():
@@ -22,10 +23,11 @@ def main():
             for vacancy in vacancies:
                 insert_vacancy(cursor, vacancy, employer_id)
 
-    # Подтверждение изменений и закрытие подключения
     conn.commit()
     cursor.close()
     conn.close()
+
+    display_data()
 
 
 if __name__ == "__main__":

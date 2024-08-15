@@ -1,9 +1,21 @@
+import os
+from typing import Dict, Any
+
 import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def connect_to_db():
     """Функция для подключения к базе данных."""
-    conn = psycopg2.connect(host="localhost", database="VacancyHH", user="postgres", password="k125414k", port="5432")
+    conn = psycopg2.connect(
+        dbname=os.getenv("DB_NAME"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        host=os.getenv("DB_HOST"),
+        port=os.getenv("DB_PORT"),
+    )
     return conn
 
 
@@ -45,7 +57,7 @@ def create_tables(conn):
     cur.close()
 
 
-def insert_employer(cursor, employer):
+def insert_employer(cursor, employer: dict) -> None:
     """Вставка данных работодателя в базу данных."""
     cursor.execute(
         """
@@ -63,7 +75,7 @@ def insert_employer(cursor, employer):
     )
 
 
-def insert_vacancy(cursor, vacancy, employer_id):
+def insert_vacancy(cursor, vacancy: Dict[str, Any], employer_id: int) -> None:
     """Вставка данных вакансии в базу данных."""
     salary = vacancy.get("salary") or {}
     cursor.execute(
