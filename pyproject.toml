@@ -17,6 +17,13 @@ mypy = "^1.11.1"
 black = "^24.8.0"
 isort = "^5.13.2"
 flake8 = "^7.1.1"
+requests-mock = "^1.12.1"
+
+
+[tool.poetry.group.add.dependencies]
+lint = "^1.2.1"
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
 
 [build-system]
 requires = ["poetry-core"]

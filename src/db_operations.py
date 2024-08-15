@@ -1,4 +1,4 @@
-from typing import List, Tuple, Optional, Any
+from typing import Any
 
 from src.create_DB import connect_to_db
 
@@ -34,7 +34,7 @@ class DBManager:
         results = self.cursor.fetchall()
         return results
 
-    def get_avg_salary(self):
+    def get_avg_salary(self) -> Any:
         """Получает среднюю зарплату по вакансиям."""
         query = """
         SELECT AVG((salary_from + salary_to) / 2.0) AS avg_salary
@@ -45,7 +45,7 @@ class DBManager:
         avg_salary = self.cursor.fetchone()[0]
         return avg_salary
 
-    def get_vacancies_with_higher_salary(self):
+    def get_vacancies_with_higher_salary(self) -> Any:
         """Получает список всех вакансий, у которых зарплата выше средней по всем вакансиям."""
         avg_salary = self.get_avg_salary()
         query = """
@@ -59,7 +59,7 @@ class DBManager:
         results = self.cursor.fetchall()
         return results
 
-    def get_vacancies_with_keyword(self, keyword: str):
+    def get_vacancies_with_keyword(self, keyword: str) -> Any:
         """Получает список всех вакансий, в названии которых содержатся переданные в метод слова."""
         query = """
         SELECT e.name AS company_name, v.name AS vacancy_name, v.salary_from, v.salary_to, v.url

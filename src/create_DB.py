@@ -1,5 +1,4 @@
 import os
-from typing import Dict, Any
 
 import psycopg2
 from dotenv import load_dotenv
@@ -19,7 +18,7 @@ def connect_to_db():
     return conn
 
 
-def create_tables(conn):
+def create_tables(conn) -> None:
     """Функция для создания таблиц в базе данных."""
     cur = conn.cursor()
     cur.execute(
@@ -75,7 +74,7 @@ def insert_employer(cursor, employer: dict) -> None:
     )
 
 
-def insert_vacancy(cursor, vacancy: Dict[str, Any], employer_id: int) -> None:
+def insert_vacancy(cursor, vacancy: dict, employer_id: int) -> None:
     """Вставка данных вакансии в базу данных."""
     salary = vacancy.get("salary") or {}
     cursor.execute(
