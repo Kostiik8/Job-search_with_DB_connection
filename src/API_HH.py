@@ -1,5 +1,4 @@
-import time
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 import requests
 
@@ -43,17 +42,17 @@ class GetInfoHHCompany:
         return vacancies
 
 
-employer_ids = [1455, 3529, 2120, 4181, 2180, 80, 1740, 78638, 2537115, 3127]
-
-hh_api = GetInfoHHCompany()
-
-for employer_id in employer_ids:
-    time.sleep(1)
-    employer_info = hh_api.get_employer_info(employer_id)
-    if employer_info:
-        print(f"Работодатель: {employer_info['name']}")
-        vacancies = hh_api.get_vacancies_by_employer(employer_id)
-        print(f"Количество вакансий: {len(vacancies)}")
-        for vacancy in vacancies:
-            print(f" - {vacancy['name']} (город: {vacancy['area']['name']})")
-        print("\n" + "=" * 40 + "\n")
+# employer_ids = [1455, 3529, 2120, 4181, 2180, 80, 1740, 78638, 2537115, 3127]
+#
+# hh_api = GetInfoHHCompany()
+#
+# for employer_id in employer_ids:
+#     time.sleep(1)
+#     employer_info = hh_api.get_employer_info(employer_id)
+#     if employer_info:
+#         print(f"Работодатель: {employer_info['name']}")
+#         vacancies = hh_api.get_vacancies_by_employer(employer_id)
+#         print(f"Количество вакансий: {len(vacancies)}")
+#         for vacancy in vacancies:
+#             print(f" - {vacancy['name']} (город: {vacancy['area']['name']})")
+#         print("\n" + "=" * 40 + "\n")
